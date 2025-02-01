@@ -11,7 +11,9 @@ export default async function HomePage() {
   const headers = await getHeaders()
   const payloadConfig = await config
   const payload = await getPayload({ config: payloadConfig })
-  const { user } = await payload.auth({ headers })
+  const { title, tagline } = await payload.findGlobal({
+    slug: 'generalSettings',
+  })
 
   const fileURL = `vscode://file/${fileURLToPath(import.meta.url)}`
 
@@ -27,8 +29,8 @@ export default async function HomePage() {
             width={65}
           />
         </picture>
-        {!user && <h1>Welcome to your new project.</h1>}
-        {user && <h1>Welcome back, {user.email}</h1>}
+        <h1>{title}</h1>
+        <h2>{tagline}</h2>
         <div className="links">
           <a
             className="admin"
