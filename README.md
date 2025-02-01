@@ -1,8 +1,3 @@
-# blank
+# Learn Payload with Colyn
 
-blank
-
-## Attributes
-
-- **Database**: mongodb
-- **Storage Adapter**: localDisk
+Work in progress repo for Learn Payload with Colyn, YouTube series https://www.youtube.com/@LearnPayload
