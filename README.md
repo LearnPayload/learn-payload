@@ -6,5 +6,15 @@ Work in progress repo for Learn Payload with Colyn, YouTube series https://www.y
 
 **Work in Progress:**
 
-1. **Global Config**: manage "Site title" and "Tagline" (similar to WordPress` General Settings) [First 100 Videos Series - Episode 6 of 100](https://youtu.be/Zyqk4udvyZs).
-2. **Global Config** Set up Menu manager. Create and edit as many menus as your site needs (e.g. "Main", "Footer", etc)
+## Global Configs
+
+[Payload Docs](https://payloadcms.com/docs/configuration/globals)
+
+### Disucussion Topics
+
+- Caching a revalidation, Field Hooks
+
+### Tasks
+
+1. Manage "Site title" and "Tagline" (similar to WordPress` General Settings) [First 100 Videos Series - Episode 6 of 100](https://youtu.be/Zyqk4udvyZs).
+2. Create a Menu manager. Create and edit as many menus as your site needs (e.g. "Main", "Footer", etc)
