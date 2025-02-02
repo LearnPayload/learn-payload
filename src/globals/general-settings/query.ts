@@ -22,7 +22,10 @@ async function getGeneralSettings() {
 /**
  * Returns a unstable_cache function mapped with the cache tag for the slug
  */
-export const getCachedGeneralSettings = () =>
-  unstable_cache(async () => getGeneralSettings() as Promise<GeneralSetting>, [slug], {
+export const getCachedGeneralSettings = unstable_cache(
+  async () => getGeneralSettings() as Promise<GeneralSetting>,
+  [slug],
+  {
     tags: [CACHE_TAG],
-  })
+  },
+)

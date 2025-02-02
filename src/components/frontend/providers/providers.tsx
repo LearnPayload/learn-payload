@@ -6,8 +6,8 @@ import { NavigationProvider } from '@/components/frontend/providers/menu-provide
 import { getCachedNavigation } from '@/globals/navigation/query'
 
 export default async function Providers({ children }: PropsWithChildren) {
-  const settings: GeneralSetting = await getCachedGeneralSettings()()
-  const navigation: Navigation = await getCachedNavigation()()
+  const settings: GeneralSetting = await getCachedGeneralSettings()
+  const navigation: Navigation = await getCachedNavigation()
 
   return (
     <SettingsProvider settings={settings}>
