@@ -1,17 +1,15 @@
 import Image from 'next/image'
-import { getPayload } from 'payload'
 import React from 'react'
 
 import config from '@/payload.config'
 import './styles.css'
 import Link from 'next/link'
+import { GeneralSetting } from '@/payload-types'
+import { getCachedGlobalConfig } from '@/utils/get-global-config'
 
 export default async function HomePage() {
   const payloadConfig = await config
-  const payload = await getPayload({ config: payloadConfig })
-  const { title, tagline } = await payload.findGlobal({
-    slug: 'generalSettings',
-  })
+  const { title, tagline } = await getCachedGlobalConfig<GeneralSetting>('generalSettings')()
 
   return (
     <div className="h-[590px] flex items-center justify-center flex-col">
