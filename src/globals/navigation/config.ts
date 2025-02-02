@@ -1,6 +1,5 @@
 import { GlobalConfig } from 'payload'
 import slugify from 'slugify'
-import { revalidateNavigation } from './revalidate-navigation'
 
 export const Navigation: GlobalConfig = {
   slug: 'navigation',
@@ -60,7 +59,4 @@ export const Navigation: GlobalConfig = {
       ],
     },
   ],
-  hooks: {
-    afterChange: [revalidateNavigation],
-  },
 }

@@ -1,7 +1,5 @@
 # Learn Payload with Colyn
 
-** WORK IN PROGRESS **
-
 Work in progress repo for Learn Payload with Colyn, YouTube series https://www.youtube.com/@LearnPayload
 
 **Work in Progress:**
