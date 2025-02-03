@@ -1,17 +1,22 @@
 import { GlobalConfig } from 'payload'
 
-
 export const GeneralSettings: GlobalConfig = {
-  slug: "generalSettings",
+  slug: 'generalSettings',
   fields: [
     {
-      name: "title",
-      type: "text",
-      required: true
+      name: 'title',
+      type: 'text',
+      required: true,
     },
     {
-      name: "tagline",
-      type: "text"
-    }
-  ]
+      name: 'tagline',
+      type: 'text',
+    },
+    {
+      name: 'logo',
+      type: 'upload',
+      relationTo: 'media',
+      required: true,
+    },
+  ],
 }

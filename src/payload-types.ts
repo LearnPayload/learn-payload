@@ -227,6 +227,7 @@ export interface GeneralSetting {
   id: number;
   title: string;
   tagline?: string | null;
+  logo: number | Media;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -237,6 +238,7 @@ export interface GeneralSetting {
 export interface GeneralSettingsSelect<T extends boolean = true> {
   title?: T;
   tagline?: T;
+  logo?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
