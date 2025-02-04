@@ -1,6 +1,6 @@
-'use client'
 import Link from 'next/link'
 import { Logo } from '../logo'
+import { MainMenu } from './main-menu'
 
 export const Header = () => {
   return (
@@ -9,6 +9,7 @@ export const Header = () => {
         <Link href="/" className="logo font-extrabold">
           <Logo />
         </Link>
+        <MainMenu />
       </div>
     </header>
   )

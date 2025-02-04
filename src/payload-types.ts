@@ -30,9 +30,11 @@ export interface Config {
   };
   globals: {
     generalSettings: GeneralSetting;
+    navigation: Navigation;
   };
   globalsSelect: {
     generalSettings: GeneralSettingsSelect<false> | GeneralSettingsSelect<true>;
+    navigation: NavigationSelect<false> | NavigationSelect<true>;
   };
   locale: null;
   user: User & {
@@ -233,12 +235,56 @@ export interface GeneralSetting {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "navigation".
+ */
+export interface Navigation {
+  id: number;
+  menus?:
+    | {
+        name: string;
+        menuItems?:
+          | {
+              label: string;
+              url: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "generalSettings_select".
  */
 export interface GeneralSettingsSelect<T extends boolean = true> {
   title?: T;
   tagline?: T;
   logo?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "navigation_select".
+ */
+export interface NavigationSelect<T extends boolean = true> {
+  menus?:
+    | T
+    | {
+        name?: T;
+        menuItems?:
+          | T
+          | {
+              label?: T;
+              url?: T;
+              id?: T;
+            };
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
