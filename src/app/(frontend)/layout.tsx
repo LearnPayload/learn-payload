@@ -3,10 +3,14 @@ import './styles.css'
 import { Header } from '@/components/frontend/layout/header'
 import { Footer } from '@/components/frontend/layout/footer'
 import Providers from '@/components/frontend/providers/providers'
+import { getCachedGeneralSettings } from '@/globals/general-settings/queries'
 
-export const metadata = {
-  description: 'A blank template using Payload in a Next.js app.',
-  title: 'Learn Payload with Colyn',
+export async function generateMetadata() {
+  const settings = await getCachedGeneralSettings()
+  return {
+    title: settings.title,
+    description: settings?.tagline ?? '',
+  }
 }
 
 export default async function RootLayout({ children }: PropsWithChildren) {

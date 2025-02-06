@@ -9,5 +9,5 @@ export const Logo = () => {
     throw new Error('Logo not found')
   }
 
-  return <Image src={settings.logo.url!} alt="Logo" width={116} height={38} />
+  return <Image src={settings.logo.url!} alt="Logo" width={587} height={253} className="w-40" />
 }
