@@ -17,7 +17,7 @@ export const GeneralSettings: GlobalConfig = {
       name: 'logo',
       type: 'upload',
       relationTo: 'media',
-      required: true,
+      required: false,
     },
   ],
   hooks: {

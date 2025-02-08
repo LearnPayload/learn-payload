@@ -23,7 +23,7 @@ export const Navigation: GlobalConfig = {
           type: 'text',
           required: true,
         },
-        ...slugField('title'),
+        ...slugField('menuName'),
         {
           name: 'menuItems',
           type: 'array',

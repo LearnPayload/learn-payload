@@ -274,7 +274,7 @@ export interface GeneralSetting {
   id: number;
   title: string;
   tagline?: string | null;
-  logo: number | Media;
+  logo?: (number | null) | Media;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
