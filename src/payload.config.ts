@@ -11,7 +11,6 @@ import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 import { GeneralSettings } from './globals/general-settings/config'
 import { Navigation } from './globals/navigation/config'
-import { Properties } from './collections/Properties/config'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -22,11 +21,8 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
-    components: {
-      beforeDashboard: ['@/components/admin/before-dashboard#BeforeDashboard'],
-    },
   },
-  collections: [Properties, Users, Media],
+  collections: [Users, Media],
   globals: [GeneralSettings, Navigation],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',

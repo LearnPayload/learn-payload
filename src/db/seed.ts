@@ -1,9 +1,30 @@
-'use server'
 import { getPayload, File } from 'payload'
 import configPromise from '@payload-config'
+import { exit } from 'process'
+
+await seed()
+
+exit()
+
 //
-export async function seed() {
+async function seed() {
   const payload = await getPayload({ config: configPromise })
+
+  // create first user
+  await Promise.all([
+    payload.db.deleteMany({ collection: 'users', where: {} }),
+    payload.create({
+      collection: 'users',
+      data: {
+        email: 'hello@example.com',
+        password: 'password',
+      },
+      depth: 0,
+      context: {
+        disableRevalidate: true,
+      },
+    }),
+  ])
 
   const [logoBuffer] = await Promise.all([
     fetchFileByURL(
@@ -23,6 +44,10 @@ export async function seed() {
       collection: 'media',
       data: logoProps,
       file: logoBuffer,
+      depth: 0,
+      context: {
+        disableRevalidate: true,
+      },
     }),
   ])
 
@@ -34,6 +59,10 @@ export async function seed() {
         title: 'Learn Payload with Colyn',
         tagline: 'A great way to learn Payload',
         logo: logo.id,
+      },
+      depth: 0,
+      context: {
+        disableRevalidate: true,
       },
     }),
   ])
@@ -63,6 +92,10 @@ export async function seed() {
             ],
           },
         ],
+      },
+      depth: 0,
+      context: {
+        disableRevalidate: true,
       },
     }),
   ])
