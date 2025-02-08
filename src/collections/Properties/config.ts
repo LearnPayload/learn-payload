@@ -1,5 +1,5 @@
 import { slugField } from '@/fields/slug/config'
-import type { CollectionConfig, Field } from 'payload'
+import type { CollectionConfig } from 'payload'
 
 export const Properties: CollectionConfig = {
   slug: 'properties',
@@ -37,6 +37,6 @@ export const Properties: CollectionConfig = {
         },
       ],
     },
-    ...([] as Field[]).concat(slugField),
+    ...slugField('title'),
   ],
 }

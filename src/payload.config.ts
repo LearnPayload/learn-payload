@@ -22,6 +22,9 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
+    components: {
+      beforeDashboard: ['@/components/admin/before-dashboard#BeforeDashboard'],
+    },
   },
   collections: [Properties, Users, Media],
   globals: [GeneralSettings, Navigation],

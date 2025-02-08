@@ -1,6 +1,7 @@
 import { GlobalConfig } from 'payload'
 import slugify from 'slugify'
 import { afterChangeHook } from './hooks'
+import { slugField } from '@/fields/slug/config'
 
 export const Navigation: GlobalConfig = {
   slug: 'navigation',
@@ -22,19 +23,7 @@ export const Navigation: GlobalConfig = {
           type: 'text',
           required: true,
         },
-        {
-          name: 'menuSlug',
-          type: 'text',
-          required: true,
-          hooks: {
-            beforeValidate: [({ siblingData }) => slugify(siblingData.menuName, { lower: true })],
-          },
-          index: true,
-          admin: {
-            readOnly: true,
-            hidden: true,
-          },
-        },
+        ...slugField('title'),
         {
           name: 'menuItems',
           type: 'array',

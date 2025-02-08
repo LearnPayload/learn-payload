@@ -286,7 +286,7 @@ export interface Navigation {
   id: number;
   menus: {
     menuName: string;
-    menuSlug: string;
+    slug: string;
     menuItems?:
       | {
           URL: string;
@@ -320,7 +320,7 @@ export interface NavigationSelect<T extends boolean = true> {
     | T
     | {
         menuName?: T;
-        menuSlug?: T;
+        slug?: T;
         menuItems?:
           | T
           | {

@@ -20,10 +20,9 @@ import { StrikethroughFeatureClient as StrikethroughFeatureClient_e70f5e05f09f93
 import { UnderlineFeatureClient as UnderlineFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
 import { BoldFeatureClient as BoldFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
 import { ItalicFeatureClient as ItalicFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
-import { SlugLabel as SlugLabel_3c7723f87236aca6fbb60729c3aa0c8f } from '@/fields/slug/SlugLabel'
-import { SlugField as SlugField_9e4a6d00d95a7209e9d23df607bf7e95 } from '@/fields/slug/SlugField'
 import { MenuItemRowLabel as MenuItemRowLabel_a52fec5b326ee0d8a26714ee1c3f157d } from '@/components/admin/menu-item-row-label'
 import { MenuRowLabel as MenuRowLabel_46258cab708eacac7ac15583d966c1be } from '@/components/admin/menu-row-label'
+import { BeforeDashboard as BeforeDashboard_3d446fa626c1d8b11f1deafb5a5d4b84 } from '@/components/admin/before-dashboard'
 
 export const importMap = {
   "@payloadcms/richtext-lexical/rsc#RscEntryLexicalCell": RscEntryLexicalCell_44fe37237e0ebf4470c9990d8cb7b07e,
@@ -48,8 +47,7 @@ export const importMap = {
   "@payloadcms/richtext-lexical/client#UnderlineFeatureClient": UnderlineFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
   "@payloadcms/richtext-lexical/client#BoldFeatureClient": BoldFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
   "@payloadcms/richtext-lexical/client#ItalicFeatureClient": ItalicFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
-  "@/fields/slug/SlugLabel#SlugLabel": SlugLabel_3c7723f87236aca6fbb60729c3aa0c8f,
-  "@/fields/slug/SlugField#SlugField": SlugField_9e4a6d00d95a7209e9d23df607bf7e95,
   "@/components/admin/menu-item-row-label#MenuItemRowLabel": MenuItemRowLabel_a52fec5b326ee0d8a26714ee1c3f157d,
-  "@/components/admin/menu-row-label#MenuRowLabel": MenuRowLabel_46258cab708eacac7ac15583d966c1be
+  "@/components/admin/menu-row-label#MenuRowLabel": MenuRowLabel_46258cab708eacac7ac15583d966c1be,
+  "@/components/admin/before-dashboard#BeforeDashboard": BeforeDashboard_3d446fa626c1d8b11f1deafb5a5d4b84
 }
