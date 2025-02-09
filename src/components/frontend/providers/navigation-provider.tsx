@@ -13,7 +13,7 @@ export const NavigationProvider = ({ children, navigation }: NavigationProviderP
   return <NavigationContext.Provider value={navigation}>{children}</NavigationContext.Provider>
 }
 
-export const useMenu = (menuSlug: string) => {
+export const useMenu = (slug: string) => {
   const context = NavigationContext
   if (context === undefined) {
     throw new Error('useMenu must be used within a NavigationProvider')
@@ -24,10 +24,10 @@ export const useMenu = (menuSlug: string) => {
   }
 
   const { menus } = navigation
-  const menu = menus.find((menu) => menu.menuSlug === menuSlug)
+  const menu = menus.find((menu) => menu.slug === slug)
 
   if (!menu) {
-    throw new Error(`Menu with slug ${menuSlug} not found`)
+    throw new Error(`Menu with slug ${slug} not found`)
   }
   return menu
 }
