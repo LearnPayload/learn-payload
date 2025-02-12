@@ -1,5 +1,4 @@
 import { GlobalConfig } from 'payload'
-import slugify from 'slugify'
 import { afterChangeHook } from './hooks'
 import { slugField } from '@/fields/slug/config'
 

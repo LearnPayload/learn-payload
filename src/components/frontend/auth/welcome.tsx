@@ -7,7 +7,8 @@ export const Welcome = () => {
   console.log({ user })
   return (
     <div className="container mx-auto py-24">
-      <h1>Welcome {user?.email}</h1>
+      <h1>Welcome </h1>
+      <pre>{JSON.stringify(user, null, 2)}</pre>
     </div>
   )
 }

@@ -9,7 +9,7 @@ import { AuthProvider } from './auth-provider'
 export default async function Providers({ children }: PropsWithChildren) {
   const settings = await getCachedGeneralSettings()
   const navigation = await getCachedNavigation()
-  const user = await getUser()
+  const { user } = await getUser()
 
   return (
     <AuthProvider user={user}>

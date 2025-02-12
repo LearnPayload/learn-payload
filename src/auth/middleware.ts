@@ -31,7 +31,6 @@ const parseUserFromEndpoint = async (cookies: RequestCookies) => {
 export const withAuth = async (request: NextRequest) => {
   const response = NextResponse.next()
   const user = await parseUserFromEndpoint(request.cookies)
-  console.log('user', user)
   if (request.nextUrl.pathname.startsWith('/account') && !user) {
     return NextResponse.redirect(new URL('/', request.url))
   }

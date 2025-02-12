@@ -5,7 +5,7 @@ import { useSettings } from './providers/settings-provider'
 export const Logo = () => {
   const settings = useSettings()
 
-  if (!settings || typeof settings.logo === 'number') {
+  if (!settings || typeof settings.logo === 'number' || !settings.logo) {
     throw new Error('Logo not found')
   }
 
