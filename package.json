@@ -26,6 +26,7 @@
     "@tailwindcss/postcss": "^4.0.4",
     "cross-env": "^7.0.3",
     "graphql": "^16.10.0",
+    "jose": "^5.9.6",
     "lodash.merge": "^4.6.2",
     "next": "15.1.5",
     "payload": "latest",

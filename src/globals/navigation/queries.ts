@@ -31,7 +31,7 @@ export const getCachedNavigation = unstable_cache(
 
 export const getMenu = async (menuSlug: string) => {
   const { menus } = await getCachedNavigation()
-  const menu = menus.find((menu) => menu.menuSlug === menuSlug)
+  const menu = menus.find((menu) => menu.slug === menuSlug)
 
   if (!menu) {
     throw new Error(`Menu with slug ${menuSlug} not found`)
