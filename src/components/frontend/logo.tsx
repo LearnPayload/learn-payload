@@ -6,7 +6,7 @@ export const Logo = () => {
   const settings = useSettings()
 
   if (!settings || typeof settings.logo === 'number' || !settings.logo) {
-    throw new Error('Logo not found')
+    return null
   }
 
   return <Image src={settings.logo.url!} alt="Logo" width={587} height={253} className="w-40" />
