@@ -1,15 +1,9 @@
-import { headers as getHeaders } from 'next/headers.js'
-import { getPayload } from 'payload'
-import configPromise from '@payload-config'
+import { Welcome } from '@/components/frontend/auth/welcome'
 
-export default async function Page() {
-  const headers = await getHeaders()
-  const payload = await getPayload({ config: configPromise })
-  const { user } = await payload.auth({ headers })
-
+export default function Page() {
   return (
-    <div className="container mx-auto p-16">
-      <h1 className="font-bold text-lg">Profile ({user?.email})</h1>
+    <div className="container mx-auto py-24">
+      <Welcome />
     </div>
   )
 }

@@ -1,17 +1,17 @@
-import { decodeJwt } from 'jose'
+// import { decodeJwt } from 'jose'
 
 import { RequestCookies } from 'next/dist/compiled/@edge-runtime/cookies'
 import { NextRequest, NextResponse } from 'next/server'
 
-const parseUserFromCookie = async (cookies: RequestCookies) => {
-  const token = cookies.get('payload-token')?.value
-  if (!token) return null
+// const parseUserFromCookie = async (cookies: RequestCookies) => {
+//   const token = cookies.get('payload-token')?.value
+//   if (!token) return null
 
-  const user = decodeJwt(token)
-  if (!user) return null
+//   const user = decodeJwt(token)
+//   if (!user) return null
 
-  return user
-}
+//   return user
+// }
 
 const parseUserFromEndpoint = async (cookies: RequestCookies) => {
   const token = cookies.get('payload-token')?.value
