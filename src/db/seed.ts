@@ -3,4 +3,6 @@ import { NavigationSeeder } from './seeders/navigation'
 import { dbSeeder } from './seeders/seeder'
 import { UserSeeder } from './seeders/users'
 
-await dbSeeder.call([new UserSeeder(), new GeneralSettingsSeeder(), new NavigationSeeder()])
+export const handler = async () => {
+  await dbSeeder.call([new UserSeeder(), new GeneralSettingsSeeder(), new NavigationSeeder()])
+}

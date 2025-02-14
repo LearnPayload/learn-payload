@@ -2,7 +2,7 @@ import { BaseSeeder, SeederInterface } from './seeder'
 
 export class NavigationSeeder extends BaseSeeder implements SeederInterface {
   async run() {
-    console.log('Running GeneralSettingsSeeder...')
+    console.log('Running NavigationSeeder...')
     const payload = await this.getPayload()
     await Promise.all([
       payload.updateGlobal({
