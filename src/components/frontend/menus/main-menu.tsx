@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { useMenu } from '../providers/navigation-provider'
+import { Button } from '@/components/ui/button'
 
 export const MainMenu = () => {
   const menu = useMenu('main')
@@ -15,6 +16,8 @@ export const MainMenu = () => {
           </Link>
         )
       })}
+
+      <Button>Get Started</Button>
     </nav>
   )
 }
