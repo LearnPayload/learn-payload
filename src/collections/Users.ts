@@ -17,6 +17,11 @@ export const Users: CollectionConfig = {
         return createId()
       },
     },
+    {
+      name: 'name',
+      type: 'text',
+      required: true,
+    },
     // Email added by default
     // Add more fields as needed
   ],

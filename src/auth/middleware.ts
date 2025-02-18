@@ -35,5 +35,13 @@ export const withAuth = async (request: NextRequest) => {
     return NextResponse.redirect(new URL('/', request.url))
   }
 
+  if (request.nextUrl.pathname.startsWith('/login') && user) {
+    return NextResponse.redirect(new URL('/', request.url))
+  }
+
+  if (request.nextUrl.pathname.startsWith('/register') && user) {
+    return NextResponse.redirect(new URL('/', request.url))
+  }
+
   return response
 }

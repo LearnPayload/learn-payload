@@ -9,6 +9,7 @@ export class UserSeeder extends BaseSeeder implements SeederInterface {
       payload.create({
         collection: 'users',
         data: {
+          name: 'Colyn Brown',
           email: 'hello@example.com',
           password: 'password',
         },
