@@ -22,6 +22,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
+
   collections: [Users, Media],
   globals: [GeneralSettings, Navigation],
   editor: lexicalEditor(),

@@ -14,41 +14,11 @@ import {
 import { Github } from 'lucide-react'
 import Link from 'next/link'
 import { ChangeEvent, ChangeEventHandler, useState } from 'react'
+import { loginAs } from '../actions'
 
 export function LoginForm() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-
-    const handleFetch = async () => {
-      try {
-        const response = await fetch(`/api/users/login`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            email,
-            password,
-          }),
-        })
-
-        if (!response.ok) {
-          throw new Error('Login failed')
-        }
-
-        // Redirect or handle successful login
-        window.location.reload()
-      } catch (error) {
-        console.error('Login error:', error)
-        // Handle login error
-      }
-    }
-
-    handleFetch()
-  }
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
@@ -67,11 +37,12 @@ export function LoginForm() {
         <CardDescription>Enter your credentials to access your account</CardDescription>
       </CardHeader>
       <CardContent>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form action={loginAs} className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
             <Input
               id="email"
+              name="email"
               value={email}
               onChange={handleEmailChange}
               type="email"

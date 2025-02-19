@@ -1,4 +1,4 @@
-import type { CollectionConfig } from 'payload'
+import { type CollectionConfig } from 'payload'
 import { createId } from '@paralleldrive/cuid2'
 
 export const Users: CollectionConfig = {
