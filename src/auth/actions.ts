@@ -1,13 +1,11 @@
 'use server'
-import sanitizeInternalFields from '@/lib/sanitize-internal-fields'
-import { Where, getCookieExpiration, getFieldsToSign, getPayload } from 'payload'
+import { Where, getPayload } from 'payload'
 import configPromise from '@payload-config'
-import { jwtSign } from '@/lib/jwt'
-import { cookies } from 'next/headers'
+
 import { redirect } from 'next/navigation'
+import { PayloadAuth } from './payload-auth'
 
 export const loginAs = async (formData: FormData) => {
-  const cookieStore = await cookies()
   const email = formData.get('email')
   const payload = await getPayload({ config: configPromise })
   const sanitizedEmail = typeof email === 'string' ? email.toLowerCase().trim() : null
@@ -19,31 +17,23 @@ export const loginAs = async (formData: FormData) => {
       equals: sanitizedEmail,
     },
   }
-
-  let user = await payload.db.findOne<any>({
+  let result = await payload.find({
     collection: 'users',
     where: emailConstraint,
+    limit: 1,
+    pagination: false,
   })
 
-  user.collection = 'users'
+  const user = result.docs.at(0)
 
-  user = sanitizeInternalFields(user)
+  if (!user) {
+    throw new Error('Invalid user')
+  }
 
-  const collectionConfig = payload.collections.users.config
-  const secret = payload.secret
-  const fieldsToSign = getFieldsToSign({
-    collectionConfig,
-    email: sanitizedEmail,
+  PayloadAuth.login({
     user,
+    collection: 'users',
   })
-
-  const { token } = await jwtSign({
-    fieldsToSign,
-    secret,
-    tokenExpiration: collectionConfig.auth.tokenExpiration,
-  })
-  const expires = getCookieExpiration({ seconds: collectionConfig.auth.tokenExpiration })
-  cookieStore.set('payload-token', token, { expires, httpOnly: true })
 
   redirect('/')
 }
