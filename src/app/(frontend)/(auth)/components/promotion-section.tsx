@@ -1,4 +1,4 @@
-import { CheckCircle } from 'lucide-react'
+import { CheckCircle } from "lucide-react"
 
 export function PromotionSection() {
   return (
@@ -7,10 +7,10 @@ export function PromotionSection() {
         <h2 className="text-3xl font-bold mb-6">Join Our Community Today!</h2>
         <ul className="space-y-4">
           {[
-            'Access exclusive content',
-            'Connect with like-minded individuals',
-            'Stay updated with the latest trends',
-            'Participate in engaging discussions',
+            "Access exclusive content",
+            "Connect with like-minded individuals",
+            "Stay updated with the latest trends",
+            "Participate in engaging discussions",
           ].map((benefit, index) => (
             <li key={index} className="flex items-center">
               <CheckCircle className="mr-2 h-5 w-5" />

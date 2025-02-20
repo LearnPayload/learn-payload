@@ -1,8 +1,8 @@
-import { jwtSign } from '@/lib/jwt'
-import { CollectionSlug, Where, getCookieExpiration, getFieldsToSign, getPayload } from 'payload'
-import configPromise from '@payload-config'
+import { jwtSign } from "@/lib/jwt"
+import { CollectionSlug, Where, getCookieExpiration, getFieldsToSign, getPayload } from "payload"
+import configPromise from "@payload-config"
 
-import { cookies } from 'next/headers'
+import { cookies } from "next/headers"
 
 export class PayloadAuth {
   static async login({ user, collection }: { user: any; collection: CollectionSlug }) {
@@ -13,7 +13,7 @@ export class PayloadAuth {
     user.collection = collection
 
     if (!collectionConfig.auth) {
-      throw new Error('Collection is not used for authentication')
+      throw new Error("Collection is not used for authentication")
     }
 
     const secret = payload.secret

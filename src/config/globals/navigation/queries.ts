@@ -1,10 +1,10 @@
-import { unstable_cache } from 'next/cache'
-import { getPayload } from 'payload'
-import configPromise from '@payload-config'
-import { Config, Navigation } from '@/payload-types'
-type Global = keyof Config['globals']
+import { unstable_cache } from "next/cache"
+import { getPayload } from "payload"
+import configPromise from "@payload-config"
+import { Config, Navigation } from "@/payload-types"
+type Global = keyof Config["globals"]
 
-const slug: Global = 'navigation'
+const slug: Global = "navigation"
 export const CACHE_TAG = `global_${slug}`
 
 async function getNavigation() {

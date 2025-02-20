@@ -1,11 +1,11 @@
-'use client'
+"use client"
 
-import Link from 'next/link'
-import { useMenu } from '../providers/navigation-provider'
-import { Button } from '@/components/ui/button'
+import Link from "next/link"
+import { useMenu } from "../providers/navigation-provider"
+import { Button } from "@/components/ui/button"
 
 export const MainMenu = () => {
-  const menu = useMenu('main')
+  const menu = useMenu("main")
 
   return (
     <nav className="flex items-center gap-4">

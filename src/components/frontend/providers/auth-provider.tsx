@@ -1,7 +1,7 @@
-'use client'
+"use client"
 
-import { User } from '@/payload-types'
-import { createContext, PropsWithChildren, useContext } from 'react'
+import { User } from "@/payload-types"
+import { createContext, PropsWithChildren, useContext } from "react"
 
 const AuthContext = createContext<User | null>(null)
 
@@ -16,7 +16,7 @@ export const AuthProvider = ({ children, user }: AuthProviderProps) => {
 export const useAuth = () => {
   const context = useContext(AuthContext)
   if (context === undefined) {
-    throw new Error('useAuth must be used within a AuthProvider')
+    throw new Error("useAuth must be used within a AuthProvider")
   }
 
   return context

@@ -1,10 +1,10 @@
-import type { CollectionConfig } from 'payload'
-import slugify from 'slugify'
+import type { CollectionConfig } from "payload"
+import slugify from "slugify"
 
-export const slugField = (fieldName: string): CollectionConfig['fields'] => [
+export const slugField = (fieldName: string): CollectionConfig["fields"] => [
   {
-    name: 'slug',
-    type: 'text',
+    name: "slug",
+    type: "text",
     required: true,
     index: true,
     unique: true,
@@ -13,7 +13,7 @@ export const slugField = (fieldName: string): CollectionConfig['fields'] => [
     },
     admin: {
       readOnly: false,
-      position: 'sidebar',
+      position: "sidebar",
     },
   },
 ]

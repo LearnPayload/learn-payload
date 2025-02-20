@@ -1,26 +1,26 @@
-import { BaseSeeder, SeederInterface } from './seeder'
-import { File } from 'payload'
+import { BaseSeeder, SeederInterface } from "./seeder"
+import { File } from "payload"
 
 export class GeneralSettingsSeeder extends BaseSeeder implements SeederInterface {
   async run() {
-    console.log('Running GeneralSettingsSeeder...')
+    console.log("Running GeneralSettingsSeeder...")
     const payload = await this.getPayload()
     const [logoBuffer] = await Promise.all([
       fetchFileByURL(
-        'https://raw.githubusercontent.com/LearnPayload/learn-payload/refs/heads/main/logo.svg',
+        "https://raw.githubusercontent.com/LearnPayload/learn-payload/refs/heads/main/logo.svg",
       ),
     ])
     const logoProps = {
-      alt: 'Logo',
-      updatedAt: '2025-02-08T16:07:57.210Z',
-      createdAt: '2025-02-08T16:07:57.195Z',
-      filename: 'logo-4.svg',
+      alt: "Logo",
+      updatedAt: "2025-02-08T16:07:57.210Z",
+      createdAt: "2025-02-08T16:07:57.195Z",
+      filename: "logo-4.svg",
     }
 
     const [_, logo] = await Promise.all([
-      payload.db.deleteMany({ collection: 'media', where: {} }),
+      payload.db.deleteMany({ collection: "media", where: {} }),
       payload.create({
-        collection: 'media',
+        collection: "media",
         data: logoProps,
         file: logoBuffer,
         depth: 0,
@@ -33,10 +33,10 @@ export class GeneralSettingsSeeder extends BaseSeeder implements SeederInterface
     // General Settings
     await Promise.all([
       payload.updateGlobal({
-        slug: 'generalSettings',
+        slug: "generalSettings",
         data: {
-          title: 'Learn Payload with Colyn!!!!!',
-          tagline: 'Make sure to like this video and subscribe to the channel!',
+          title: "Learn Payload with Colyn!!!!!",
+          tagline: "Make sure to like this video and subscribe to the channel!",
           logo: logo.id,
         },
         depth: 0,
@@ -50,8 +50,8 @@ export class GeneralSettingsSeeder extends BaseSeeder implements SeederInterface
 
 async function fetchFileByURL(url: string): Promise<File> {
   const res = await fetch(url, {
-    credentials: 'include',
-    method: 'GET',
+    credentials: "include",
+    method: "GET",
   })
 
   if (!res.ok) {
@@ -61,9 +61,9 @@ async function fetchFileByURL(url: string): Promise<File> {
   const data = await res.arrayBuffer()
 
   return {
-    name: url.split('/').pop() || `file-${Date.now()}`,
+    name: url.split("/").pop() || `file-${Date.now()}`,
     data: Buffer.from(data),
-    mimetype: `image/${url.split('.').pop()}`,
+    mimetype: `image/${url.split(".").pop()}`,
     size: data.byteLength,
   }
 }

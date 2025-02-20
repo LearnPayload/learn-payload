@@ -1,6 +1,6 @@
-import Link from 'next/link'
-import { Logo } from '../logo'
-import { MainMenu } from '../menus/main-menu'
+import Link from "next/link"
+import { Logo } from "../logo"
+import { MainMenu } from "../menus/main-menu"
 
 export const Header = () => {
   return (

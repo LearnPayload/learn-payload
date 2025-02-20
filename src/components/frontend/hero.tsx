@@ -1,8 +1,8 @@
-'use client'
+"use client"
 
-import Link from 'next/link'
-import { useSettings } from './providers/settings-provider'
-import Image from 'next/image'
+import Link from "next/link"
+import { useSettings } from "./providers/settings-provider"
+import Image from "next/image"
 
 export const Hero = () => {
   const { title, tagline } = useSettings()
@@ -24,7 +24,7 @@ export const Hero = () => {
         </div>
         <div className="flex items-center gap-4">
           <Link
-            href={'/admin'}
+            href={"/admin"}
             rel="noopener noreferrer"
             className="rounded px-4 py-2 flex bg-white text-black font-semibold"
             target="_blank"

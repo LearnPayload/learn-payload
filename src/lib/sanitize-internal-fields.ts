@@ -4,9 +4,9 @@ const sanitizeInternalFields = <T extends Record<string, unknown>>(incomingDoc: 
 
   for (const key in incomingDoc) {
     const val = incomingDoc[key]
-    if (key === '_id') {
-      newDoc['id'] = val
-    } else if (key !== '__v') {
+    if (key === "_id") {
+      newDoc["id"] = val
+    } else if (key !== "__v") {
       newDoc[key] = val
     }
   }

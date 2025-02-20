@@ -1,17 +1,17 @@
-import { BaseSeeder, SeederInterface } from './seeder'
+import { BaseSeeder, SeederInterface } from "./seeder"
 
 export class UserSeeder extends BaseSeeder implements SeederInterface {
   async run() {
-    console.log('Running UserSeeder...')
+    console.log("Running UserSeeder...")
     const payload = await this.getPayload()
     await Promise.all([
-      payload.db.deleteMany({ collection: 'users', where: {} }),
+      payload.db.deleteMany({ collection: "users", where: {} }),
       payload.create({
-        collection: 'users',
+        collection: "users",
         data: {
-          name: 'Colyn Brown',
-          email: 'hello@example.com',
-          password: 'password',
+          name: "Colyn Brown",
+          email: "hello@example.com",
+          password: "password",
         },
         depth: 0,
         context: {

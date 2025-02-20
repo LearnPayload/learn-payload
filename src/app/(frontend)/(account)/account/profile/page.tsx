@@ -1,4 +1,4 @@
-import { Welcome } from '@/components/frontend/auth/welcome'
+import { Welcome } from "@/components/frontend/auth/welcome"
 
 export default function Page() {
   return (

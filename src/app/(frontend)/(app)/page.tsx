@@ -1,6 +1,6 @@
-import React from 'react'
+import React from "react"
 
-import { Hero } from '@/components/frontend/hero'
+import { Hero } from "@/components/frontend/hero"
 
 export default async function HomePage() {
   return (

@@ -1,7 +1,7 @@
-'use client'
+"use client"
 
-import { createContext, PropsWithChildren, useContext } from 'react'
-import { GeneralSetting } from '@/payload-types'
+import { createContext, PropsWithChildren, useContext } from "react"
+import { GeneralSetting } from "@/payload-types"
 
 const SettingsContext = createContext<GeneralSetting | null>(null)
 
@@ -16,11 +16,11 @@ export const SettingsProvider = ({ children, settings }: SettingsProviderProps) 
 export const useSettings = () => {
   const context = SettingsContext
   if (context === undefined) {
-    throw new Error('useSettings must be used within a SettingsProvider')
+    throw new Error("useSettings must be used within a SettingsProvider")
   }
   const settings = useContext(context)
   if (settings === null) {
-    throw new Error('Please provide settings to the SettingsProvider')
+    throw new Error("Please provide settings to the SettingsProvider")
   }
   return settings
 }

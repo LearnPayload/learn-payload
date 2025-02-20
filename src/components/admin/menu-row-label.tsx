@@ -1,6 +1,6 @@
-'use client'
+"use client"
 
-import { useRowLabel } from '@payloadcms/ui'
+import { useRowLabel } from "@payloadcms/ui"
 
 export const MenuRowLabel = () => {
   const { data } = useRowLabel<{ menuName?: string }>()

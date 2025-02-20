@@ -1,7 +1,7 @@
-'use client'
+"use client"
 
-import { createContext, PropsWithChildren, useContext } from 'react'
-import { Navigation } from '@/payload-types'
+import { createContext, PropsWithChildren, useContext } from "react"
+import { Navigation } from "@/payload-types"
 
 const NavigationContext = createContext<Navigation | null>(null)
 
@@ -16,11 +16,11 @@ export const NavigationProvider = ({ children, navigation }: NavigationProviderP
 export const useMenu = (slug: string) => {
   const context = NavigationContext
   if (context === undefined) {
-    throw new Error('useMenu must be used within a NavigationProvider')
+    throw new Error("useMenu must be used within a NavigationProvider")
   }
   const navigation = useContext(context)
   if (navigation === null) {
-    throw new Error('Please provide navigation to the NavigationProvider')
+    throw new Error("Please provide navigation to the NavigationProvider")
   }
 
   const { menus } = navigation

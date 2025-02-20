@@ -1,8 +1,8 @@
-import { unstable_cache } from 'next/cache'
-import { getPayload } from 'payload'
-import configPromise from '@payload-config'
+import { unstable_cache } from "next/cache"
+import { getPayload } from "payload"
+import configPromise from "@payload-config"
 
-const slug = 'generalSettings'
+const slug = "generalSettings"
 
 export const CACHE_TAG = `global_${slug}`
 

@@ -1,15 +1,15 @@
-import React, { PropsWithChildren } from 'react'
-import '../styles.css'
-import { Header } from '@/components/frontend/layout/header'
-import { Footer } from '@/components/frontend/layout/footer'
-import Providers from '@/components/frontend/providers/providers'
-import { getCachedGeneralSettings } from '@/globals/general-settings/queries'
+import React, { PropsWithChildren } from "react"
+import "../styles.css"
+import { Header } from "@/components/frontend/layout/header"
+import { Footer } from "@/components/frontend/layout/footer"
+import Providers from "@/components/frontend/providers/providers"
+import { getCachedGeneralSettings } from "@/config/globals/general-settings/queries"
 
 export async function generateMetadata() {
   const settings = await getCachedGeneralSettings()
   return {
     title: settings.title,
-    description: settings?.tagline ?? '',
+    description: settings?.tagline ?? "",
   }
 }
 

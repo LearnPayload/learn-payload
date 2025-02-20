@@ -1,8 +1,8 @@
-'use client'
+"use client"
 
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import {
   Card,
   CardContent,
@@ -10,9 +10,9 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card'
-import { Github } from 'lucide-react'
-import Link from 'next/link'
+} from "@/components/ui/card"
+import { Github } from "lucide-react"
+import Link from "next/link"
 
 export function RegisterForm() {
   return (
@@ -50,7 +50,7 @@ export function RegisterForm() {
         <Button
           variant="outline"
           className="w-full mt-4"
-          onClick={() => console.log('GitHub auth')}
+          onClick={() => console.log("GitHub auth")}
         >
           <Github className="mr-2 h-4 w-4" />
           GitHub

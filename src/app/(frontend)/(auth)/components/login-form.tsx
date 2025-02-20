@@ -1,8 +1,8 @@
-'use client'
+"use client"
 
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import {
   Card,
   CardContent,
@@ -10,15 +10,16 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card'
-import { Github } from 'lucide-react'
-import Link from 'next/link'
-import { useState } from 'react'
-import { loginAs } from '@/auth/actions'
+} from "@/components/ui/card"
+import { Github } from "lucide-react"
+import Link from "next/link"
+import { useState } from "react"
+import { githubAuthorize, loginAs } from "@/auth/actions"
+import { GithubIcon } from "@/components/icons/github"
 
 export function LoginForm() {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
@@ -72,12 +73,8 @@ export function LoginForm() {
             <span className="bg-background px-2 text-muted-foreground">Or continue with</span>
           </div>
         </div>
-        <Button
-          variant="outline"
-          className="w-full mt-4"
-          onClick={() => console.log('GitHub auth')}
-        >
-          <Github className="mr-2 h-4 w-4" />
+        <Button variant="outline" className="w-full mt-4" onClick={async () => githubAuthorize()}>
+          <GithubIcon />
           GitHub
         </Button>
       </CardContent>

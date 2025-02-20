@@ -1,5 +1,5 @@
-import { PromotionSection } from '../components/promotion-section'
-import { RegisterForm } from '../components/register-form'
+import { PromotionSection } from "../components/promotion-section"
+import { RegisterForm } from "../components/register-form"
 
 export default function LoginPage() {
   return (

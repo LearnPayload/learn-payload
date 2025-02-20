@@ -1,16 +1,16 @@
-import { type CollectionConfig } from 'payload'
-import { createId } from '@paralleldrive/cuid2'
+import { type CollectionConfig } from "payload"
+import { createId } from "@paralleldrive/cuid2"
 
 export const Users: CollectionConfig = {
-  slug: 'users',
+  slug: "users",
   admin: {
-    useAsTitle: 'email',
+    useAsTitle: "email",
   },
   auth: true,
   fields: [
     {
-      name: 'id',
-      type: 'text',
+      name: "id",
+      type: "text",
       required: true,
       unique: true,
       defaultValue: () => {
@@ -18,8 +18,8 @@ export const Users: CollectionConfig = {
       },
     },
     {
-      name: 'name',
-      type: 'text',
+      name: "name",
+      type: "text",
       required: true,
     },
     // Email added by default
