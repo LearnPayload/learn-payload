@@ -13,8 +13,7 @@
     "lint": "cross-env NODE_OPTIONS=--no-deprecation next lint",
     "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
     "start": "cross-env NODE_OPTIONS=--no-deprecation next start",
-    "migrate:refresh": "cross-env NODE_OPTIONS=--no-deprecation payload migrate:refresh; npm run db:seed",
-    "db:seed": "bun src/db/seed.ts"
+    "typecheck": "tsc"
   },
   "dependencies": {
     "@paralleldrive/cuid2": "^2.2.2",

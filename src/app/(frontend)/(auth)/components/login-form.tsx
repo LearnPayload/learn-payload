@@ -13,8 +13,8 @@ import {
 } from '@/components/ui/card'
 import { Github } from 'lucide-react'
 import Link from 'next/link'
-import { ChangeEvent, ChangeEventHandler, useState } from 'react'
-import { loginAs } from '../actions'
+import { useState } from 'react'
+import { loginAs } from '@/auth/actions'
 
 export function LoginForm() {
   const [email, setEmail] = useState('')
