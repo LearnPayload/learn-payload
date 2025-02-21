@@ -1,19 +1,18 @@
 "use server"
 import { Where, getPayload } from "payload"
 import configPromise from "@payload-config"
-
 import { redirect } from "next/navigation"
-import { PayloadAuth } from "./payload-auth"
-import { getUserByEmail } from "@/data-access/users"
+import { getUserByEmail, sendLoginLink } from "@/data-access/users"
 import invariant from "tiny-invariant"
-export const sendLoginLink = async (formData: FormData) => {
+import { loginWith } from "."
+
+export const createLoginLink = async (formData: FormData) => {
   const email = formData.get("email")
   invariant(typeof email === "string")
 
-  const user = await getUserByEmail({ email })
+  const user = await getUserByEmail({ email }) // creates a user if not exists
 
-  await PayloadAuth.login({ user, collection: "users" })
-  redirect("/")
+  await sendLoginLink(user)
 }
 
 export const loginAs = async (formData: FormData) => {
@@ -42,7 +41,7 @@ export const loginAs = async (formData: FormData) => {
     throw new Error("Invalid user")
   }
 
-  PayloadAuth.login({
+  loginWith({
     user,
     collection: "users",
   })

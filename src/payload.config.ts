@@ -13,7 +13,10 @@ import { Users } from "./config/collections/Users"
 import { Media } from "./config/collections/Media"
 import { GeneralSettings } from "./config/globals/general-settings/config"
 import { Navigation } from "./config/globals/navigation/config"
-import { githubAuthCallbackEndpoint } from "./config/endpoints/auth"
+import {
+  githubAuthCallbackEndpoint,
+  loginTokenVerifyEndpoint,
+} from "./config/endpoints/auth"
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -38,7 +41,7 @@ export default buildConfig({
       },
     },
   }),
-  endpoints: [githubAuthCallbackEndpoint],
+  endpoints: [githubAuthCallbackEndpoint, loginTokenVerifyEndpoint],
   collections: [Users, Media],
   globals: [GeneralSettings, Navigation],
   editor: lexicalEditor(),

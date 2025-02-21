@@ -13,11 +13,11 @@ import {
 } from "@/components/ui/card"
 import Link from "next/link"
 import { useState } from "react"
-import { githubAuthorize, sendLoginLink } from "@/auth/actions"
+import { githubAuthorize, createLoginLink } from "@/auth/actions"
 import { GithubIcon } from "@/components/icons/github"
 
 export function LoginForm() {
-  const [email, setEmail] = useState("")
+  const [email, setEmail] = useState("john@example.com")
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
@@ -33,7 +33,7 @@ export function LoginForm() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <form action={sendLoginLink} className="space-y-4">
+        <form action={createLoginLink} className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
             <Input

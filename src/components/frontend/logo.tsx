@@ -5,8 +5,6 @@ import { useSettings } from "./providers/settings-provider"
 export const Logo = () => {
   const settings = useSettings()
 
-  console.log({ settings })
-
   if (!settings || typeof settings.logo === "number" || !settings.logo) {
     return null
   }

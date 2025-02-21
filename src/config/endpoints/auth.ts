@@ -1,6 +1,6 @@
 import { getUserByEmail } from "@/data-access/users"
 import { Endpoint, PayloadRequest } from "payload"
-import { PayloadAuth } from "../../auth/payload-auth"
+import { loginWith } from "@/auth"
 
 // endpoints/githubAuth.ts
 export const githubAuthCallbackEndpoint: Endpoint = {
@@ -60,13 +60,67 @@ export const githubAuthCallbackEndpoint: Endpoint = {
     })
 
     try {
-      await PayloadAuth.login({ user, collection: "users" })
+      await loginWith({ user, collection: "users" })
     } catch (error) {
       console.error(error)
       return Response.redirect(
         new URL(`/login?error=github_email`, process.env.APP_BASE_URL),
       )
     }
+
+    return Response.redirect(new URL(`/`, process.env.APP_BASE_URL))
+  },
+}
+
+export const loginTokenVerifyEndpoint: Endpoint = {
+  path: "/auth/login/:token",
+  method: "get",
+  handler: async (req: PayloadRequest) => {
+    const token = req.routeParams?.token
+
+    if (!token) {
+      return Response.redirect(
+        new URL(`/login?token_error=true`, process.env.APP_BASE_URL),
+      )
+    }
+
+    const result = await req.payload.find({
+      collection: "users",
+      where: {
+        login_token: {
+          equals: token,
+        },
+      },
+    })
+
+    if (result.totalDocs === 0) {
+      return Response.redirect(
+        new URL(`/login?token_error=true`, process.env.APP_BASE_URL),
+      )
+    }
+
+    const user = result.docs.at(0)!
+    const expires = new Date(user.login_token_expiration ?? "")
+    const now = new Date()
+
+    console.log({ expires, now })
+
+    await req.payload.update({
+      collection: "users",
+      id: user.id,
+      data: {
+        login_token: null,
+        login_token_expiration: null,
+      },
+    })
+
+    if (expires < now) {
+      return Response.redirect(
+        new URL(`/login?token_error=true`, process.env.APP_BASE_URL),
+      )
+    }
+
+    await loginWith({ user, collection: "users" })
 
     return Response.redirect(new URL(`/`, process.env.APP_BASE_URL))
   },

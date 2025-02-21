@@ -24,15 +24,15 @@ export const Users: CollectionConfig = {
     },
     {
       name: "login_token",
-      hidden: true,
       type: "text",
       required: false,
+      admin: { disabled: true },
     },
     {
       name: "login_token_expiration",
-      hidden: true,
       type: "date",
       required: false,
+      admin: { disabled: true },
     },
     // Email added by default
     // Add more fields as needed

@@ -3,8 +3,8 @@ import { SettingsProvider } from "@/components/frontend/providers/settings-provi
 import { getCachedGeneralSettings } from "@/config/globals/general-settings/queries"
 import { NavigationProvider } from "@/components/frontend/providers/navigation-provider"
 import { getCachedNavigation } from "@/config/globals/navigation/queries"
-import { getAuth } from "@/auth/get-auth"
 import { AuthProvider } from "./auth-provider"
+import { getAuth } from "@/auth"
 
 export default async function Providers({ children }: PropsWithChildren) {
   const settings = await getCachedGeneralSettings()
