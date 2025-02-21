@@ -1,4 +1,7 @@
+import { getUserByEmail as findUserOrCreate } from "@/data-access/users"
 import { Endpoint, PayloadRequest } from "payload"
+import { PayloadAuth } from "../payload-auth"
+import { createId } from "@paralleldrive/cuid2"
 
 // endpoints/githubAuth.ts
 export const githubAuthCallbackEndpoint: Endpoint = {
@@ -6,7 +9,6 @@ export const githubAuthCallbackEndpoint: Endpoint = {
   method: "get",
   handler: async (req: PayloadRequest) => {
     const code = req.query.code
-    console.log({ code })
 
     const tokenRes = await fetch("https://github.com/login/oauth/access_token", {
       method: "POST",
@@ -21,10 +23,8 @@ export const githubAuthCallbackEndpoint: Endpoint = {
       }),
     })
 
-    console.log({ tokenRes })
-
     if (!tokenRes.ok) {
-      return Response.json({}, { status: 401 })
+      return Response.redirect(new URL(`/login?error=github_email`, process.env.APP_BASE_URL))
     }
 
     const body = await tokenRes.json()
@@ -32,7 +32,7 @@ export const githubAuthCallbackEndpoint: Endpoint = {
     const { access_token } = body
 
     if (!access_token) {
-      return Response.json({ message: "Code invalid" }, { status: 401 })
+      return Response.redirect(new URL(`/login?error=github_email`, process.env.APP_BASE_URL))
     }
 
     const userRes = await fetch("https://api.github.com/user", {
@@ -43,14 +43,29 @@ export const githubAuthCallbackEndpoint: Endpoint = {
 
     const githubUser = await userRes.json()
 
-    const result = req.payload.find({
-      collection: "users",
-      where: {
-        email: {
-          equals: githubUser.id.toString(),
-        },
-      },
+    if (!githubUser || !githubUser.email) {
+      return Response.redirect(new URL(`/login?error=github_email`, process.env.APP_BASE_URL))
+    }
+    const password = createId()
+    const user = await findUserOrCreate({
+      email: githubUser.email,
+      password,
+      name: githubUser.name,
     })
-    return Response.json({})
+
+    // update password
+    await req.payload.update({
+      collection: "users",
+      id: user.id,
+      data: { password },
+    })
+
+    try {
+      await PayloadAuth.login({ user, collection: "users" })
+    } catch (error) {
+      return Response.redirect(new URL(`/login?error=github_email`, process.env.APP_BASE_URL))
+    }
+
+    return Response.redirect(new URL(`/`, process.env.APP_BASE_URL))
   },
 }

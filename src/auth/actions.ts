@@ -39,5 +39,7 @@ export const loginAs = async (formData: FormData) => {
 }
 
 export const githubAuthorize = async () => {
-  redirect(`https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_CLIENT_ID}`)
+  redirect(
+    `https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_CLIENT_ID}&scope=read:user`,
+  )
 }

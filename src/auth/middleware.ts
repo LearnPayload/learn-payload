@@ -17,7 +17,7 @@ const parseUserFromEndpoint = async (cookies: RequestCookies) => {
   const token = cookies.get("payload-token")?.value
   if (!token) return null
 
-  const resp = await fetch(`${process.env.APP_BASE_URL}/api/users/me`, {
+  const resp = await fetch(`${process.env.APP_BASE_URL_INTERNAL}/api/users/me`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
