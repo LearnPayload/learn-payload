@@ -14,7 +14,9 @@ export default async function Providers({ children }: PropsWithChildren) {
   return (
     <AuthProvider user={user}>
       <SettingsProvider settings={settings}>
-        <NavigationProvider navigation={navigation}>{children}</NavigationProvider>
+        <NavigationProvider navigation={navigation}>
+          {children}
+        </NavigationProvider>
       </SettingsProvider>
     </AuthProvider>
   )

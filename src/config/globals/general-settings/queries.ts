@@ -17,6 +17,10 @@ export async function getGeneralSettings() {
   return global
 }
 
-export const getCachedGeneralSettings = unstable_cache(async () => getGeneralSettings(), [slug], {
-  tags: [CACHE_TAG],
-})
+export const getCachedGeneralSettings = unstable_cache(
+  async () => getGeneralSettings(),
+  [slug],
+  {
+    tags: [CACHE_TAG],
+  },
+)

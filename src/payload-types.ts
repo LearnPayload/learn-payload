@@ -70,6 +70,8 @@ export interface UserAuthOperations {
 export interface User {
   id: string;
   name: string;
+  login_token?: string | null;
+  login_token_expiration?: string | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -164,6 +166,8 @@ export interface PayloadMigration {
 export interface UsersSelect<T extends boolean = true> {
   id?: T;
   name?: T;
+  login_token?: T;
+  login_token_expiration?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;

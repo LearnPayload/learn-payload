@@ -9,7 +9,9 @@ export const slugField = (fieldName: string): CollectionConfig["fields"] => [
     index: true,
     unique: true,
     hooks: {
-      beforeValidate: [({ siblingData }) => slugify(siblingData[fieldName], { lower: true })],
+      beforeValidate: [
+        ({ siblingData }) => slugify(siblingData[fieldName], { lower: true }),
+      ],
     },
     admin: {
       readOnly: false,

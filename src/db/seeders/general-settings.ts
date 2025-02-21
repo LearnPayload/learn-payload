@@ -1,7 +1,10 @@
 import { BaseSeeder, SeederInterface } from "./seeder"
 import { File } from "payload"
 
-export class GeneralSettingsSeeder extends BaseSeeder implements SeederInterface {
+export class GeneralSettingsSeeder
+  extends BaseSeeder
+  implements SeederInterface
+{
   async run() {
     console.log("Running GeneralSettingsSeeder...")
     const payload = await this.getPayload()

@@ -1,4 +1,6 @@
-const sanitizeInternalFields = <T extends Record<string, unknown>>(incomingDoc: T): T => {
+const sanitizeInternalFields = <T extends Record<string, unknown>>(
+  incomingDoc: T,
+): T => {
   // Create a new object to hold the sanitized fields
   const newDoc: Record<string, unknown> = {}
 

@@ -11,5 +11,13 @@ export const Logo = () => {
     return null
   }
 
-  return <Image src={settings.logo.url!} alt="Logo" width={587} height={253} className="w-16" />
+  return (
+    <Image
+      src={settings.logo.url!}
+      alt="Logo"
+      width={587}
+      height={253}
+      className="w-16"
+    />
+  )
 }

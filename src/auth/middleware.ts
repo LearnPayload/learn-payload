@@ -17,11 +17,14 @@ const parseUserFromEndpoint = async (cookies: RequestCookies) => {
   const token = cookies.get("payload-token")?.value
   if (!token) return null
 
-  const resp = await fetch(`${process.env.APP_BASE_URL_INTERNAL}/api/users/me`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
+  const resp = await fetch(
+    `${process.env.APP_BASE_URL_INTERNAL}/api/users/me`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     },
-  })
+  )
   const user = await resp.json()
   if (!user) return null
 
@@ -31,8 +34,12 @@ const parseUserFromEndpoint = async (cookies: RequestCookies) => {
 export const withAuth = async (request: NextRequest) => {
   const response = NextResponse.next()
   const user = await parseUserFromEndpoint(request.cookies)
-  if (request.nextUrl.pathname.startsWith("/account") && !user) {
-    return NextResponse.redirect(new URL("/", request.url))
+  if (
+    (request.nextUrl.pathname === "/" ||
+      request.nextUrl.pathname.startsWith("/account")) &&
+    !user
+  ) {
+    return NextResponse.redirect(new URL("/login", request.url))
   }
 
   if (request.nextUrl.pathname.startsWith("/login") && user) {

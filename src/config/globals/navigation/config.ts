@@ -29,7 +29,8 @@ export const Navigation: GlobalConfig = {
           admin: {
             initCollapsed: true,
             components: {
-              RowLabel: "@/components/admin/menu-item-row-label#MenuItemRowLabel",
+              RowLabel:
+                "@/components/admin/menu-item-row-label#MenuItemRowLabel",
             },
           },
           fields: [

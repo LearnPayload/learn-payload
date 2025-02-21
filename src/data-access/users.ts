@@ -1,6 +1,7 @@
 import { getPayload } from "payload"
 import configPromise from "@payload-config"
 import { User } from "@/payload-types"
+import { createId } from "@paralleldrive/cuid2"
 
 export type UserProps = {
   email: string
@@ -24,21 +25,22 @@ export const getUserByEmail = async (data: UserProps): Promise<User> => {
       },
     },
   })
-
-  const user = result.totalDocs === 0 ? await createUser(data) : result.docs.at(0)!
+  const user =
+    result.totalDocs === 0 ? await createUser(data) : result.docs.at(0)!
 
   return user
 }
 
-export const createUser = async ({ email, password, name = "" }: UserProps) => {
+export const createUser = async (props: UserProps) => {
   const payload = await getPayload({ config: configPromise })
+  const password = createId()
 
   const user = await payload.create({
     collection: "users",
     data: {
-      name,
-      email,
-      password,
+      name: props.name ?? "Guest",
+      email: props.email,
+      password: props.password ?? password,
     },
   })
 

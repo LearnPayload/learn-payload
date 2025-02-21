@@ -19,8 +19,8 @@ export function PromotionSection() {
           ))}
         </ul>
         <p className="mt-6 text-sm opacity-80">
-          Sign up now and experience the difference. Our platform is designed to help you grow,
-          learn, and succeed in your journey.
+          Sign up now and experience the difference. Our platform is designed to
+          help you grow, learn, and succeed in your journey.
         </p>
       </div>
     </div>

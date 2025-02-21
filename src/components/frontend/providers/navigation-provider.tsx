@@ -9,8 +9,15 @@ interface NavigationProviderProps extends PropsWithChildren {
   navigation: Navigation
 }
 
-export const NavigationProvider = ({ children, navigation }: NavigationProviderProps) => {
-  return <NavigationContext.Provider value={navigation}>{children}</NavigationContext.Provider>
+export const NavigationProvider = ({
+  children,
+  navigation,
+}: NavigationProviderProps) => {
+  return (
+    <NavigationContext.Provider value={navigation}>
+      {children}
+    </NavigationContext.Provider>
+  )
 }
 
 export const useMenu = (slug: string) => {

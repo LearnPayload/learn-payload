@@ -9,8 +9,15 @@ interface SettingsProviderProps extends PropsWithChildren {
   settings: GeneralSetting
 }
 
-export const SettingsProvider = ({ children, settings }: SettingsProviderProps) => {
-  return <SettingsContext.Provider value={settings}>{children}</SettingsContext.Provider>
+export const SettingsProvider = ({
+  children,
+  settings,
+}: SettingsProviderProps) => {
+  return (
+    <SettingsContext.Provider value={settings}>
+      {children}
+    </SettingsContext.Provider>
+  )
 }
 
 export const useSettings = () => {
