@@ -60,7 +60,7 @@ export const githubAuthCallbackEndpoint: Endpoint = {
     })
 
     try {
-      await loginWith({ user, collection: "users" })
+      await loginWith(user)
     } catch (error) {
       console.error(error)
       return Response.redirect(
@@ -68,7 +68,7 @@ export const githubAuthCallbackEndpoint: Endpoint = {
       )
     }
 
-    return Response.redirect(new URL(`/`, process.env.APP_BASE_URL))
+    return Response.redirect(new URL(`/admin`, process.env.APP_BASE_URL))
   },
 }
 
@@ -103,8 +103,6 @@ export const loginTokenVerifyEndpoint: Endpoint = {
     const expires = new Date(user.login_token_expiration ?? "")
     const now = new Date()
 
-    console.log({ expires, now })
-
     await req.payload.update({
       collection: "users",
       id: user.id,
@@ -120,8 +118,8 @@ export const loginTokenVerifyEndpoint: Endpoint = {
       )
     }
 
-    await loginWith({ user, collection: "users" })
+    await loginWith(user)
 
-    return Response.redirect(new URL(`/`, process.env.APP_BASE_URL))
+    return Response.redirect(new URL(`/admin`, process.env.APP_BASE_URL))
   },
 }

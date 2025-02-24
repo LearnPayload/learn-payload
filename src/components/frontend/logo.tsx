@@ -15,7 +15,7 @@ export const Logo = () => {
       alt="Logo"
       width={587}
       height={253}
-      className="w-16"
+      className="w-[140px]"
     />
   )
 }

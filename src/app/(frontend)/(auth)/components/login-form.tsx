@@ -12,43 +12,47 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import Link from "next/link"
-import { useState } from "react"
 import { githubAuthorize, createLoginLink } from "@/auth/actions"
 import { GithubIcon } from "@/components/icons/github"
+import { useActionState } from "react"
 
 export function LoginForm() {
-  const [email, setEmail] = useState("john@example.com")
-
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault()
-    setEmail(e.target.value)
-  }
+  const [response, action, pending] = useActionState(createLoginLink, {})
 
   return (
     <Card className="w-full max-w-md">
       <CardHeader>
         <CardTitle>Sign In</CardTitle>
         <CardDescription>
-          Enter your credentials to access your account
+          Enter your email address to get your login link!
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <form action={createLoginLink} className="space-y-4">
+        <form action={action} className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
             <Input
               id="email"
               name="email"
-              value={email}
-              onChange={handleEmailChange}
-              type="email"
+              defaultValue={"john@example.com"}
+              type="text"
               placeholder="john@example.com"
               required
             />
           </div>
-          <Button type="submit" className="w-full">
-            Sign In with Email
+          <Button type="submit" className="w-full" disabled={pending}>
+            {pending ? "Please wait..." : "Send me a login link"}
           </Button>
+
+          {response.success && (
+            <p className="text-emerald-500 text-sm">
+              Login link successfully sent!
+            </p>
+          )}
+
+          {response.errors && (
+            <p className="text-destructive text-sm">{response.errors.email}</p>
+          )}
         </form>
         <div className="mt-4 relative">
           <div className="absolute inset-0 flex items-center">

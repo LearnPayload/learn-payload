@@ -10,14 +10,14 @@ export class GeneralSettingsSeeder
     const payload = await this.getPayload()
     const [logoBuffer] = await Promise.all([
       fetchFileByURL(
-        "https://raw.githubusercontent.com/LearnPayload/learn-payload/refs/heads/main/logo.svg",
+        "https://learnpayload.nyc3.cdn.digitaloceanspaces.com/logos/main-dark2.png",
       ),
     ])
     const logoProps = {
       alt: "Logo",
       updatedAt: "2025-02-08T16:07:57.210Z",
       createdAt: "2025-02-08T16:07:57.195Z",
-      filename: "logo-4.svg",
+      filename: "main-dark2.png",
     }
 
     const [_, logo] = await Promise.all([
@@ -38,7 +38,7 @@ export class GeneralSettingsSeeder
       payload.updateGlobal({
         slug: "generalSettings",
         data: {
-          title: "Learn Payload with Colyn!!!!!",
+          title: "Learn Payload with Colyn",
           tagline: "Make sure to like this video and subscribe to the channel!",
           logo: logo.id,
         },

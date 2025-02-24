@@ -1,13 +1,10 @@
 import { cookies, headers as getHeaders } from "next/headers"
-import {
-  CollectionSlug,
-  getCookieExpiration,
-  getFieldsToSign,
-  getPayload,
-} from "payload"
+import { getCookieExpiration, getFieldsToSign, getPayload } from "payload"
 import configPromise from "@payload-config"
 import { User } from "@/payload-types"
 import { jwtSign } from "@/lib/jwt"
+
+export type UserWithCollection = User & { collection: "users" }
 
 export type AuthCredentials = {
   email: string
@@ -28,17 +25,16 @@ export const login = async (credentials: AuthCredentials) => {
   })
 }
 
-export const loginWith = async ({
-  user,
-  collection,
-}: {
-  user: User
-  collection: CollectionSlug
-}) => {
+export const loginWith = async (user: User) => {
   const cookieStore = await cookies()
   const payload = await getPayload({ config: configPromise })
+  const userWithCollection: UserWithCollection = {
+    ...user,
+    collection: "users",
+  }
 
-  const collectionConfig = payload.collections[collection].config
+  const collectionConfig =
+    payload.collections[userWithCollection.collection].config
 
   if (!collectionConfig.auth) {
     throw new Error("Collection is not used for authentication")
@@ -47,8 +43,8 @@ export const loginWith = async ({
   const secret = payload.secret
   const fieldsToSign = getFieldsToSign({
     collectionConfig,
-    email: user.email,
-    user: null,
+    email: userWithCollection.email,
+    user: userWithCollection,
   })
 
   const { token } = await jwtSign({

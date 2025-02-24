@@ -3,6 +3,7 @@ import configPromise from "@payload-config"
 import { User } from "@/payload-types"
 import { createId } from "@paralleldrive/cuid2"
 import { randomBytes } from "node:crypto"
+import { send } from "@/emails/login-link-email"
 
 export type UserProps = {
   email: string
@@ -26,11 +27,7 @@ export const sendLoginLink = async (user: User) => {
 
   const url = new URL(`/api/auth/login/${token}`, process.env.APP_BASE_URL)
 
-  await payload.sendEmail({
-    to: user.email,
-    subject: "Login link: Learn Payload with Colyn",
-    html: `<a href="${url}">Login link</a>`,
-  })
+  await send({ email: user.email, url })
 }
 
 export const getUserByEmail = async (data: UserProps): Promise<User> => {

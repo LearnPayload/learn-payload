@@ -1,52 +1,48 @@
 "use server"
-import { Where, getPayload } from "payload"
-import configPromise from "@payload-config"
 import { redirect } from "next/navigation"
 import { getUserByEmail, sendLoginLink } from "@/data-access/users"
-import invariant from "tiny-invariant"
-import { loginWith } from "."
 
-export const createLoginLink = async (formData: FormData) => {
-  const email = formData.get("email")
-  invariant(typeof email === "string")
+import { z } from "zod"
 
-  const user = await getUserByEmail({ email }) // creates a user if not exists
+const LoginLinkSchema = z.object({ email: z.string().email() })
 
-  await sendLoginLink(user)
+type LoginLinkState = {
+  success?: boolean
+  errors?: {
+    email?: string
+  }
 }
 
-export const loginAs = async (formData: FormData) => {
-  const email = formData.get("email")
-  const payload = await getPayload({ config: configPromise })
-  const sanitizedEmail =
-    typeof email === "string" ? email.toLowerCase().trim() : null
+export const createLoginLink = async (
+  previousState: LoginLinkState,
+  formData: FormData,
+): Promise<LoginLinkState> => {
+  const email = formData.get("email") as string
 
-  if (!sanitizedEmail) throw new Error("Wrong email")
-
-  const emailConstraint: Where = {
-    email: {
-      equals: sanitizedEmail,
-    },
-  }
-  const result = await payload.find({
-    collection: "users",
-    where: emailConstraint,
-    limit: 1,
-    pagination: false,
+  const validatedFields = LoginLinkSchema.safeParse({
+    email,
   })
 
-  const user = result.docs.at(0)
-
-  if (!user) {
-    throw new Error("Invalid user")
+  if (!validatedFields.success) {
+    return {
+      success: false,
+      errors: {
+        email: "Please enter a valid email address.",
+      },
+    }
+  }
+  try {
+    const user = await getUserByEmail({ email }) // creates a user if not exists
+    await sendLoginLink(user)
+  } catch (error) {
+    console.error(error)
+    return {
+      success: false,
+      errors: { email: "There was a problem sending the login link." },
+    }
   }
 
-  loginWith({
-    user,
-    collection: "users",
-  })
-
-  redirect("/")
+  return { success: true }
 }
 
 export const githubAuthorize = async () => {
