@@ -1,5 +1,4 @@
 import getPayload from "@/db/payload"
-import payload from "@/db/payload"
 import {
   Body,
   Button,
