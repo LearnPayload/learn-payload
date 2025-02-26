@@ -3,84 +3,57 @@
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import Link from "next/link"
-import { githubAuthorize, createLoginLink } from "@/auth/actions"
-import { GithubIcon } from "@/components/icons/github"
+import { createLoginLink } from "@/auth/actions"
 import { useActionState } from "react"
+import InputError from "@/components/frontend/input-error"
+import { LoaderCircle } from "lucide-react"
 
 export function LoginForm() {
   const [response, action, pending] = useActionState(createLoginLink, {})
 
   return (
-    <Card className="w-full max-w-md">
-      <CardHeader>
-        <CardTitle>Sign In</CardTitle>
-        <CardDescription>
-          Enter your email address to get your login link!
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <form action={action} className="space-y-4">
-          <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
-            <Input
-              id="email"
-              name="email"
-              defaultValue={"john@example.com"}
-              type="text"
-              placeholder="john@example.com"
-              required
-            />
-          </div>
-          <Button type="submit" className="w-full" disabled={pending}>
-            {pending ? "Please wait..." : "Send me a login link"}
-          </Button>
-
-          {response.success && (
-            <p className="text-emerald-500 text-sm">
-              Login link successfully sent!
-            </p>
-          )}
-
-          {response.errors && (
-            <p className="text-destructive text-sm">{response.errors.email}</p>
-          )}
-        </form>
-        <div className="mt-4 relative">
-          <div className="absolute inset-0 flex items-center">
-            <span className="w-full border-t" />
-          </div>
-          <div className="relative flex justify-center text-xs uppercase">
-            <span className="bg-background px-2 text-muted-foreground">
-              Or continue with
-            </span>
-          </div>
+    <form action={action} className="flex-1 flex flex-col gap-6 w-full">
+      <div className="grid gap-3">
+        <div className="grid gap-2">
+          <Label htmlFor="email">Email address</Label>
+          <Input
+            id="email"
+            type="email"
+            name="email"
+            required
+            autoFocus
+            tabIndex={1}
+            autoComplete="email"
+            defaultValue={"hello@example.com"}
+            placeholder="email@example.com"
+          />
+          <InputError message={response.errors?.email} />
         </div>
+
         <Button
-          variant="outline"
-          className="w-full mt-4"
-          onClick={async () => githubAuthorize()}
+          type="submit"
+          className="mt-4 w-full"
+          tabIndex={4}
+          size={"lg"}
+          disabled={pending}
         >
-          <GithubIcon />
-          GitHub
+          {pending && <LoaderCircle className="h-4 w-4 animate-spin" />}
+          Send me a login link
         </Button>
-      </CardContent>
-      <CardFooter>
-        <p className="text-sm text-center w-full flex items-center gap-2">
-          <span>Don&apos;t have an account?</span>
-          <Link href="/register" className="p-0">
-            Register
-          </Link>
-        </p>
-      </CardFooter>
-    </Card>
+      </div>
+
+      {/* <div className="text-muted-foreground text-center text-sm">
+        Don&apos;t have an account?{" "}
+        <TextLink href={"/register"} tabIndex={5}>
+          Sign up
+        </TextLink>
+      </div> */}
+
+      {response.success && (
+        <div className="mb-4 text-center text-sm font-medium text-green-600">
+          Login link has been sent to your email address
+        </div>
+      )}
+    </form>
   )
 }

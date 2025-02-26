@@ -33,7 +33,6 @@ const parseUserFromEndpoint = async (cookies: RequestCookies) => {
 
 export const withAuth = async (request: NextRequest) => {
   const response = NextResponse.next()
-  console.log("WITH AUTH", request.nextUrl.pathname)
   if (request.nextUrl.pathname.startsWith("/admin/login")) {
     return NextResponse.redirect(new URL("/login", request.url))
   }
@@ -41,7 +40,7 @@ export const withAuth = async (request: NextRequest) => {
   const user = await parseUserFromEndpoint(request.cookies)
   if (
     (request.nextUrl.pathname === "/" ||
-      request.nextUrl.pathname.startsWith("/account")) &&
+      request.nextUrl.pathname.startsWith("/settings")) &&
     !user
   ) {
     return NextResponse.redirect(new URL("/login", request.url))

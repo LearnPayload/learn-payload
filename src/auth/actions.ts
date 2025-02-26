@@ -10,6 +10,7 @@ type LoginLinkState = {
   success?: boolean
   errors?: {
     email?: string
+    password?: string
   }
 }
 

@@ -1,7 +1,5 @@
 import React, { PropsWithChildren } from "react"
-import "../styles.css"
-import { Header } from "@/components/frontend/layout/header"
-import { Footer } from "@/components/frontend/layout/footer"
+import "./styles.css"
 import Providers from "@/components/frontend/providers/providers"
 import { getCachedGeneralSettings } from "@/config/globals/general-settings/queries"
 
@@ -17,12 +15,8 @@ export default async function RootLayout({ children }: PropsWithChildren) {
   return (
     <Providers>
       <html lang="en">
-        <body className="bg-neutral-900 text-white h-screen">
-          <div className="h-screen flex flex-col">
-            <Header />
-            <main className="flex-1">{children}</main>
-            <Footer />
-          </div>
+        <body>
+          <main>{children}</main>
         </body>
       </html>
     </Providers>

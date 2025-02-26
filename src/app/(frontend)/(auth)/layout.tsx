@@ -1,26 +1,11 @@
-import React, { PropsWithChildren } from "react"
-import "../styles.css"
-import Providers from "@/components/frontend/providers/providers"
-import { getCachedGeneralSettings } from "@/config/globals/general-settings/queries"
-
-export async function generateMetadata() {
-  const settings = await getCachedGeneralSettings()
-  return {
-    title: settings.title,
-    description: settings?.tagline ?? "",
-  }
+interface AuthLayoutProps {
+  children: React.ReactNode
 }
 
-export default async function RootLayout({ children }: PropsWithChildren) {
+export default function AuthSimpleLayout({ children }: AuthLayoutProps) {
   return (
-    <Providers>
-      <html lang="en">
-        <body className="bg-neutral-900 text-white h-screen">
-          <div className="h-screen flex flex-col">
-            <main className="flex-1">{children}</main>
-          </div>
-        </body>
-      </html>
-    </Providers>
+    <div className="bg-muted flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10">
+      {children}
+    </div>
   )
 }
